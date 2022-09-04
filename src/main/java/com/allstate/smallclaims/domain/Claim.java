@@ -1,56 +1,52 @@
 package com.allstate.smallclaims.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Year;
 
 @Entity
 public class Claim {
+
+    @ManyToOne
+    Customer customer;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    Double estimatedValue;
-
-    String reason;
+    String firstName;
+    String middleName;
+    String lastName;
+    String policyNumber;
+    LocalDate claimDate;
+    Double claimAmount;
+    String claimReason;
     String incidentDescription;
-    String furtherDetails;
-
-    LocalDate dateOfIncident;
-    LocalDate dateOfClaim;
-
-    //property only
-    String address;
-
-    //motor only
-    String make;
-    String model;
-    Year yearOfManufacture;
-
-    //pet only
-    String animal;
-    String breed;
-
-    public Claim(Integer id, Double estimatedValue, String reason, String incidentDescription, String furtherDetails, LocalDate dateOfIncident, LocalDate dateOfClaim, String address, String make, String model, Year yearOfManufacture, String animal, String breed) {
-        this.id = id;
-        this.estimatedValue = estimatedValue;
-        this.reason = reason;
-        this.incidentDescription = incidentDescription;
-        this.furtherDetails = furtherDetails;
-        this.dateOfIncident = dateOfIncident;
-        this.dateOfClaim = dateOfClaim;
-        this.address = address;
-        this.make = make;
-        this.model = model;
-        this.yearOfManufacture = yearOfManufacture;
-        this.animal = animal;
-        this.breed = breed;
-    }
+    String petAnimal;
+    String petbreed;
+    String propertyAddress;
+    String vehicleMake;
+    String vehicleModel;
+    Integer vehicleYear;
 
     public Claim() {
+    }
+
+    public Claim(String firstName, String middleName, String lastName, String policyNumber, LocalDate claimDate, Double claimAmount, String claimReason, String incidentDescription, String petAnimal, String petbreed, String propertyAddress, String vehicleMake, String vehicleModel, Integer vehicleYear) {
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.policyNumber = policyNumber;
+        this.claimDate = claimDate;
+        this.claimAmount = claimAmount;
+        this.claimReason = claimReason;
+        this.incidentDescription = incidentDescription;
+        this.petAnimal = petAnimal;
+        this.petbreed = petbreed;
+        this.propertyAddress = propertyAddress;
+        this.vehicleMake = vehicleMake;
+        this.vehicleModel = vehicleModel;
+        this.vehicleYear = vehicleYear;
     }
 
     public Integer getId() {
@@ -61,20 +57,60 @@ public class Claim {
         this.id = id;
     }
 
-    public Double getEstimatedValue() {
-        return estimatedValue;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setEstimatedValue(Double estimatedValue) {
-        this.estimatedValue = estimatedValue;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getReason() {
-        return reason;
+    public String getMiddleName() {
+        return middleName;
     }
 
-    public void setReason(String reason) {
-        this.reason = reason;
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPolicyNumber() {
+        return policyNumber;
+    }
+
+    public void setPolicyNumber(String policyNumber) {
+        this.policyNumber = policyNumber;
+    }
+
+    public LocalDate getClaimDate() {
+        return claimDate;
+    }
+
+    public void setClaimDate(LocalDate claimDate) {
+        this.claimDate = claimDate;
+    }
+
+    public Double getClaimAmount() {
+        return claimAmount;
+    }
+
+    public void setClaimAmount(Double claimAmount) {
+        this.claimAmount = claimAmount;
+    }
+
+    public String getClaimReason() {
+        return claimReason;
+    }
+
+    public void setClaimReason(String claimReason) {
+        this.claimReason = claimReason;
     }
 
     public String getIncidentDescription() {
@@ -85,75 +121,51 @@ public class Claim {
         this.incidentDescription = incidentDescription;
     }
 
-    public String getFurtherDetails() {
-        return furtherDetails;
+    public String getPetAnimal() {
+        return petAnimal;
     }
 
-    public void setFurtherDetails(String furtherDetails) {
-        this.furtherDetails = furtherDetails;
+    public void setPetAnimal(String petAnimal) {
+        this.petAnimal = petAnimal;
     }
 
-    public LocalDate getDateOfIncident() {
-        return dateOfIncident;
+    public String getPetbreed() {
+        return petbreed;
     }
 
-    public void setDateOfIncident(LocalDate dateOfIncident) {
-        this.dateOfIncident = dateOfIncident;
+    public void setPetbreed(String petbreed) {
+        this.petbreed = petbreed;
     }
 
-    public LocalDate getDateOfClaim() {
-        return dateOfClaim;
+    public String getPropertyAddress() {
+        return propertyAddress;
     }
 
-    public void setDateOfClaim(LocalDate dateOfClaim) {
-        this.dateOfClaim = dateOfClaim;
+    public void setPropertyAddress(String propertyAddress) {
+        this.propertyAddress = propertyAddress;
     }
 
-    public String getAddress() {
-        return address;
+    public String getVehicleMake() {
+        return vehicleMake;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setVehicleMake(String vehicleMake) {
+        this.vehicleMake = vehicleMake;
     }
 
-    public String getMake() {
-        return make;
+    public String getVehicleModel() {
+        return vehicleModel;
     }
 
-    public void setMake(String make) {
-        this.make = make;
+    public void setVehicleModel(String vehicleModel) {
+        this.vehicleModel = vehicleModel;
     }
 
-    public String getModel() {
-        return model;
+    public Integer getVehicleYear() {
+        return vehicleYear;
     }
 
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public Year getYearOfManufacture() {
-        return yearOfManufacture;
-    }
-
-    public void setYearOfManufacture(Year yearOfManufacture) {
-        this.yearOfManufacture = yearOfManufacture;
-    }
-
-    public String getAnimal() {
-        return animal;
-    }
-
-    public void setAnimal(String animal) {
-        this.animal = animal;
-    }
-
-    public String getBreed() {
-        return breed;
-    }
-
-    public void setBreed(String breed) {
-        this.breed = breed;
+    public void setVehicleYear(Integer vehicleYear) {
+        this.vehicleYear = vehicleYear;
     }
 }

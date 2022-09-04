@@ -19,7 +19,8 @@ public class CustomerController {
     CustomerService customerService;
 
     @Autowired
-    public void setPaymentsService(CustomerService paymentsService) {
+    public void setCustomerService(CustomerService customerService) {
+
         this.customerService = customerService;
     }
 
