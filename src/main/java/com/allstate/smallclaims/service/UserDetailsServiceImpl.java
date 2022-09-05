@@ -1,6 +1,6 @@
 package com.allstate.smallclaims.service;
 
-import com.allstate.smallclaims.data.UserRepository;
+import com.allstate.smallclaims.domain.data.UserRepository;
 import com.allstate.smallclaims.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

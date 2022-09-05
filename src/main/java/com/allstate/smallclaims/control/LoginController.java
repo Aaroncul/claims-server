@@ -1,0 +1,33 @@
+package com.allstate.smallclaims.control;
+
+import com.allstate.smallclaims.domain.data.UserRepository;
+import com.allstate.smallclaims.domain.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
+
+@RestController
+@CrossOrigin
+@RequestMapping("/api/login")
+public class LoginController {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @PostMapping()
+    public Map<String,String> login(@RequestBody Map<String,String> loginData) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserDetails userDetails = (UserDetails)principal;
+        String username = userDetails.getUsername();
+        User user = userRepository.findByUsername(username);
+
+        Map<String,String> response = new HashMap<>();
+        response.put("username", username);
+        response.put("role", user.getRole().toString());
+        return response;
+    }
+}

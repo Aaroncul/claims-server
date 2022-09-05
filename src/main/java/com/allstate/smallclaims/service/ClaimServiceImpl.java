@@ -1,8 +1,8 @@
 package com.allstate.smallclaims.service;
 
-import com.allstate.smallclaims.data.ClaimRepository;
+import com.allstate.smallclaims.domain.User;
+import com.allstate.smallclaims.domain.data.ClaimRepository;
 import com.allstate.smallclaims.domain.Claim;
-import com.allstate.smallclaims.domain.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +15,13 @@ public class ClaimServiceImpl implements ClaimService{
     private ClaimRepository claimRepository;
 
     @Override
-    public List<Claim> findClaimsByCustomer(Customer customer) {
-        return null;
+    public List<Claim> findClaimsByUser(User user) {
+        return findClaimsByUser(user);
+    }
+
+    @Override
+    public List<Claim> findAll() {
+        return claimRepository.findAll();
     }
 
     @Override
