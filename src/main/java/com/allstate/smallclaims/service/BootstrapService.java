@@ -25,8 +25,8 @@ public class BootstrapService {
     @PostConstruct
     public void createInitialUsers () {
         if (userRepository.findAll().size() == 0) {
-            User user1 = new User("user1", "thisisabadpasword","Aaron",UserRole.USER);
-            User user2 = new User("user2", "thisisabadpasword", "Leah", UserRole.MANAGER);
+            User user1 = new User("user1", "thisisabadpasword","Aaron",UserRole.CUSTOMER);
+            User user2 = new User("user2", "thisisabadpasword", "Leah", UserRole.STAFF);
 
             userManagementService.save(user1);
             userManagementService.save(user2);
