@@ -1,10 +1,13 @@
 package com.allstate.smallclaims.service;
 
-import com.allstate.smallclaims.data.UserRepository;
+import com.allstate.smallclaims.domain.data.UserRepository;
 import com.allstate.smallclaims.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserManagementServiceImpl implements UserManagementService {
@@ -20,4 +23,21 @@ public class UserManagementServiceImpl implements UserManagementService {
         user.setPassword( bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public Optional<User> findById(Integer id) {
+        return userRepository.findById(id.toString());
+    }
+
+    @Override
+    public Optional<User> findByUserName(String userName) {
+        return Optional.ofNullable(userRepository.findByUsername(userName));
+    }
+
+
 }

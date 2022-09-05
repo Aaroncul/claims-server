@@ -1,6 +1,6 @@
 package com.allstate.smallclaims.control;
 
-import com.allstate.smallclaims.data.UserRepository;
+import com.allstate.smallclaims.domain.data.UserRepository;
 import com.allstate.smallclaims.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,9 +23,7 @@ public class LoginController {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserDetails userDetails = (UserDetails)principal;
         String username = userDetails.getUsername();
-        System.out.println("User is " + username);
         User user = userRepository.findByUsername(username);
-        System.out.println("Role is " + user.getRole());
 
         Map<String,String> response = new HashMap<>();
         response.put("username", username);

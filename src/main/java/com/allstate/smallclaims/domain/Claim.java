@@ -8,7 +8,7 @@ import java.time.Year;
 public class Claim {
 
     @ManyToOne
-    Customer customer;
+    User user;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
