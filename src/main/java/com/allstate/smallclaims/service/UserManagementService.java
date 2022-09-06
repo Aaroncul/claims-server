@@ -11,5 +11,5 @@ public interface UserManagementService {
     public void save(User user);
     public List<User> findAll();
     public Optional<User> findById(Integer id);
-    public Optional<User> findByUserName(String userName);
+    public Optional<User> findByUserName(String username);
 }

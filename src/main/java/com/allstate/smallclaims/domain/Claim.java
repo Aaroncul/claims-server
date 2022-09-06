@@ -2,17 +2,16 @@ package com.allstate.smallclaims.domain;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.Year;
 
 @Entity
 public class Claim {
-
-    @ManyToOne
-    User user;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
+
+    @ManyToOne
+    User user;
+    String username;
 
     String firstName;
     String middleName;
@@ -23,7 +22,7 @@ public class Claim {
     String claimReason;
     String incidentDescription;
     String petAnimal;
-    String petbreed;
+    String petBreed;
     String propertyAddress;
     String vehicleMake;
     String vehicleModel;
@@ -32,7 +31,9 @@ public class Claim {
     public Claim() {
     }
 
-    public Claim(String firstName, String middleName, String lastName, String policyNumber, LocalDate claimDate, Double claimAmount, String claimReason, String incidentDescription, String petAnimal, String petbreed, String propertyAddress, String vehicleMake, String vehicleModel, Integer vehicleYear) {
+    public Claim(String username, String firstName, String middleName, String lastName, String policyNumber, LocalDate claimDate,
+                 Double claimAmount, String claimReason, String incidentDescription, String petAnimal, String petbreed, String propertyAddress, String vehicleMake, String vehicleModel, Integer vehicleYear) {
+        this.username = username;
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
@@ -42,7 +43,7 @@ public class Claim {
         this.claimReason = claimReason;
         this.incidentDescription = incidentDescription;
         this.petAnimal = petAnimal;
-        this.petbreed = petbreed;
+        this.petBreed = petbreed;
         this.propertyAddress = propertyAddress;
         this.vehicleMake = vehicleMake;
         this.vehicleModel = vehicleModel;
@@ -51,10 +52,6 @@ public class Claim {
 
     public Integer getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getFirstName() {
@@ -130,11 +127,11 @@ public class Claim {
     }
 
     public String getPetbreed() {
-        return petbreed;
+        return petBreed;
     }
 
     public void setPetbreed(String petbreed) {
-        this.petbreed = petbreed;
+        this.petBreed = petbreed;
     }
 
     public String getPropertyAddress() {
