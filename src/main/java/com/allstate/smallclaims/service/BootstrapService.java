@@ -17,11 +17,7 @@ public class BootstrapService {
     @Autowired
     UserRepository userRepository;
     @Autowired
-    ClaimRepository claimRepository;
-    @Autowired
     UserManagementService userManagementService;
-    @Autowired
-    ClaimService claimService;
 
     @PostConstruct
     public void createInitialUsers () {
@@ -35,43 +31,6 @@ public class BootstrapService {
 
             userManagementService.save(user1);
             userManagementService.save(user2);
-
-            Claim claim1 = new Claim(
-                    username1,
-                    user1.getFirstName(),
-                    user1.getMiddleName(),
-                    user1.getLastName(),
-                    "123",
-                    LocalDate.now(),
-                    100.00,
-                    "Vet bill",
-                    "Pet needed treatment",
-                    "Cat",
-                    "British Short Hair",
-                    null,
-                    null,
-                    null,
-                    null);
-
-            Claim claim2 = new Claim(
-                    username1,
-                    user1.getFirstName(),
-                    user1.getMiddleName(),
-                    user1.getLastName(),
-                    "123",
-                    LocalDate.now(),
-                    210.00,
-                    "Vet bill",
-                    "Pet needed treatment",
-                    "Dog",
-                    "Corgi",
-                    null,
-                    null,
-                    null,
-                    null);
-
-            claimService.save(claim1);
-            claimService.save(claim2);
         }
     }
 }

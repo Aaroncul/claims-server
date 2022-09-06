@@ -1,5 +1,7 @@
 package com.allstate.smallclaims.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -11,7 +13,22 @@ public class Claim {
 
     @ManyToOne
     User user;
-    String username;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getPetBreed() {
+        return petBreed;
+    }
+
+    public void setPetBreed(String petBreed) {
+        this.petBreed = petBreed;
+    }
 
     String firstName;
     String middleName;
@@ -31,9 +48,8 @@ public class Claim {
     public Claim() {
     }
 
-    public Claim(String username, String firstName, String middleName, String lastName, String policyNumber, LocalDate claimDate,
-                 Double claimAmount, String claimReason, String incidentDescription, String petAnimal, String petbreed, String propertyAddress, String vehicleMake, String vehicleModel, Integer vehicleYear) {
-        this.username = username;
+    public Claim(User user, String firstName, String middleName, String lastName, String policyNumber, LocalDate claimDate, Double claimAmount, String claimReason, String incidentDescription, String petAnimal, String petBreed, String propertyAddress, String vehicleMake, String vehicleModel, Integer vehicleYear) {
+        this.user = user;
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
@@ -43,7 +59,7 @@ public class Claim {
         this.claimReason = claimReason;
         this.incidentDescription = incidentDescription;
         this.petAnimal = petAnimal;
-        this.petBreed = petbreed;
+        this.petBreed = petBreed;
         this.propertyAddress = propertyAddress;
         this.vehicleMake = vehicleMake;
         this.vehicleModel = vehicleModel;

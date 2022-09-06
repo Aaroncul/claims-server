@@ -1,5 +1,7 @@
 package com.allstate.smallclaims.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,6 +14,7 @@ public class User {
 
     @Column(unique = true)
     private String username;
+    @JsonIgnore
     private String password;
     private UserRole role;
 
