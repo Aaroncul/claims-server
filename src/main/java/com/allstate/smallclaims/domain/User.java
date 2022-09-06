@@ -1,5 +1,7 @@
 package com.allstate.smallclaims.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,6 +14,7 @@ public class User {
 
     @Column(unique = true)
     private String username;
+    @JsonIgnore
     private String password;
     private UserRole role;
 
@@ -20,10 +23,11 @@ public class User {
     private String lastName;
     @OneToMany
     private List<Policy> policies;
+
     @OneToMany
     private List<Claim> claims;
 
-    public User(String username, String password, UserRole role, String firstName, String middleName, String lastName) {
+    public User(String username, String password, UserRole role, String firstName, String middleNames, String lastName) {
         this.username = username;
         this.password = password;
         this.role = role;

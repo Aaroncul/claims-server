@@ -40,6 +40,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/api/claim/**")
                 .hasAnyRole("CUSTOMER", "STAFF")
+                .antMatchers(HttpMethod.GET,"/api/claim")
+                .hasAnyRole("STAFF")
                 .antMatchers(HttpMethod.POST, "/api/claim/**")
                 .hasAnyRole("CUSTOMER", "STAFF")
                 .antMatchers(HttpMethod.POST, "/api/login")

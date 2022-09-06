@@ -5,6 +5,7 @@ import com.allstate.smallclaims.domain.User;
 import com.allstate.smallclaims.service.ClaimService;
 import com.allstate.smallclaims.service.UserManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -38,8 +39,8 @@ public class ClaimController {
         return claimService.findById(id);
     }
     @GetMapping()
-    public List<Claim> findAll(@RequestBody String userName) {
-        Optional<User> optional = userManagementService.findByUserName(userName);
+    public List<Claim> findAll() {
+/*        Optional<User> optional = userManagementService.findByUserName(username);
 
         if(optional.isPresent())
         {
@@ -49,7 +50,8 @@ public class ClaimController {
                     claimService.findAll() : claimService.findClaimsByUser(user);
         }
 
-        return Collections.emptyList();
+        return Collections.emptyList();*/
+        return claimService.findAll();
     }
     @PostMapping
     public Claim addClaim(@RequestBody Claim claim)

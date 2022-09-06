@@ -35,8 +35,8 @@ public class UserManagementServiceImpl implements UserManagementService {
     }
 
     @Override
-    public Optional<User> findByUserName(String userName) {
-        return Optional.ofNullable(userRepository.findByUsername(userName));
+    public Optional<User> findByUserName(String username) {
+        return Optional.ofNullable(userRepository.findByUsername(username));
     }
 
 
