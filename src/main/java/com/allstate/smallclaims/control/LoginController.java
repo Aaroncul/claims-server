@@ -3,6 +3,7 @@ package com.allstate.smallclaims.control;
 import com.allstate.smallclaims.domain.data.UserRepository;
 import com.allstate.smallclaims.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
@@ -29,5 +30,14 @@ public class LoginController {
         response.put("username", username);
         response.put("role", user.getRole().toString());
         return response;
+    }
+
+    @GetMapping("getCurrentUser")
+    public User getCurrentUser()
+    {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        auth.getPrincipal();
+
+        return userRepository.findByUsername(auth.getName());
     }
 }

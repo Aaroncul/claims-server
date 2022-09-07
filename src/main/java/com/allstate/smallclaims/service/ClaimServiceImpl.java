@@ -1,19 +1,22 @@
 package com.allstate.smallclaims.service;
 
+import com.allstate.smallclaims.domain.Claim;
 import com.allstate.smallclaims.domain.User;
 import com.allstate.smallclaims.domain.data.ClaimRepository;
-import com.allstate.smallclaims.domain.Claim;
 import com.allstate.smallclaims.domain.data.UserRepository;
+import com.allstate.smallclaims.exceptions.ClaimNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
-public class ClaimServiceImpl implements ClaimService{
+public class ClaimServiceImpl implements ClaimService {
     @Autowired
     private ClaimRepository claimRepository;
     @Autowired
@@ -21,7 +24,7 @@ public class ClaimServiceImpl implements ClaimService{
 
     @Override
     public List<Claim> findClaimsByUser(User user) {
-        return findClaimsByUser(user);
+        return claimRepository.findAllByUser(user);
     }
 
     @Override
@@ -30,11 +33,38 @@ public class ClaimServiceImpl implements ClaimService{
     }
 
     @Override
-    public Optional<Claim> findById(Integer id) {
-        return claimRepository.findById(id);
+    public Claim updateClaim(Integer id, Map<String, String> data) {
+        Claim claim = findById(id);
+        if (data.containsKey("firstName")) claim.setFirstName(data.get("firstName"));
+        if (data.containsKey("middleName")) claim.setMiddleName(data.get("middleName"));
+        if (data.containsKey("lastName")) claim.setLastName(data.get("lastName"));
+        if (data.containsKey("policyNumber")) claim.setPolicyNumber(data.get("policyNumber"));
+        if (data.containsKey("claimDate")) claim.setClaimDate(LocalDate.parse(data.get("claimDate")));
+        if (data.containsKey("claimAmount")) claim.setClaimAmount(Double.parseDouble(data.get("claimAmount")));
+        if (data.containsKey("claimReason")) claim.setClaimReason(data.get("claimReason"));
+        if (data.containsKey("incidentDescription")) claim.setIncidentDescription(data.get("incidentDescription"));
+        if (data.containsKey("petAnimal")) claim.setPetAnimal(data.get("petAnimal"));
+        if (data.containsKey("petBreed")) claim.setPetBreed(data.get("petBreed"));
+        if (data.containsKey("propertyAddress")) claim.setPropertyAddress(data.get("propertyAddress"));
+        if (data.containsKey("vehicleMake")) claim.setVehicleMake(data.get("vehicleMake"));
+        if (data.containsKey("vehicleModel")) claim.setVehicleModel(data.get("vehicleModel"));
+        if (data.containsKey("vehicleYear")) claim.setVehicleYear(Integer.parseInt(data.get("vehicleYear")));
+
+        return claimRepository.save(claim);
     }
 
-    public Claim save(Claim claim){
+    @Override
+    public Claim findById(Integer id) {
+        Optional<Claim> optionalClaim = claimRepository.findById(id);
+
+        if (optionalClaim.isPresent()) {
+            return optionalClaim.get();
+        }
+
+        throw new ClaimNotFoundException("There is no claim with an ID of " + id);
+    }
+
+    public Claim save(Claim claim) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         auth.getPrincipal();
 

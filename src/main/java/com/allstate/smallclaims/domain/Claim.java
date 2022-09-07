@@ -44,6 +44,15 @@ public class Claim {
     String vehicleMake;
     String vehicleModel;
     Integer vehicleYear;
+    ClaimStatus claimStatus;
+
+    public ClaimStatus getClaimStatus() {
+        return claimStatus;
+    }
+
+    public void setClaimStatus(ClaimStatus claimStatus) {
+        this.claimStatus = claimStatus;
+    }
 
     public Claim() {
     }
@@ -57,6 +66,7 @@ public class Claim {
         this.claimDate = claimDate;
         this.claimAmount = claimAmount;
         this.claimReason = claimReason;
+        this.claimStatus = ClaimStatus.NEW;
         this.incidentDescription = incidentDescription;
         this.petAnimal = petAnimal;
         this.petBreed = petBreed;
