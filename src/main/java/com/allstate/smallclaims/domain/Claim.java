@@ -44,20 +44,29 @@ public class Claim {
     String vehicleMake;
     String vehicleModel;
     Integer vehicleYear;
-    ClaimStatus claimStatus;
+    String claimStatus;
+    String staffNotes;
 
-    public ClaimStatus getClaimStatus() {
+    public String getStaffNotes() {
+        return staffNotes;
+    }
+
+    public void setStaffNotes(String staffNotes) {
+        this.staffNotes = staffNotes;
+    }
+
+    public String getClaimStatus() {
         return claimStatus;
     }
 
-    public void setClaimStatus(ClaimStatus claimStatus) {
+    public void setClaimStatus(String claimStatus) {
         this.claimStatus = claimStatus;
     }
 
     public Claim() {
     }
 
-    public Claim(User user, String firstName, String middleName, String lastName, String policyNumber, LocalDate claimDate, Double claimAmount, String claimReason, String incidentDescription, String petAnimal, String petBreed, String propertyAddress, String vehicleMake, String vehicleModel, Integer vehicleYear) {
+    public Claim(User user, String firstName, String middleName, String lastName, String policyNumber, LocalDate claimDate, Double claimAmount, String claimReason, String incidentDescription, String petAnimal, String petBreed, String propertyAddress, String vehicleMake, String vehicleModel, Integer vehicleYear, String claimStatus, String staffNotes) {
         this.user = user;
         this.firstName = firstName;
         this.middleName = middleName;
@@ -66,7 +75,6 @@ public class Claim {
         this.claimDate = claimDate;
         this.claimAmount = claimAmount;
         this.claimReason = claimReason;
-        this.claimStatus = ClaimStatus.NEW;
         this.incidentDescription = incidentDescription;
         this.petAnimal = petAnimal;
         this.petBreed = petBreed;
@@ -74,6 +82,8 @@ public class Claim {
         this.vehicleMake = vehicleMake;
         this.vehicleModel = vehicleModel;
         this.vehicleYear = vehicleYear;
+        this.claimStatus = claimStatus;
+        this.staffNotes = staffNotes;
     }
 
     public Integer getId() {

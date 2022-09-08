@@ -1,6 +1,7 @@
 package com.allstate.smallclaims.control;
 
 import com.allstate.smallclaims.domain.Claim;
+import com.allstate.smallclaims.domain.ClaimStatus;
 import com.allstate.smallclaims.domain.User;
 import com.allstate.smallclaims.domain.data.UserRepository;
 import com.allstate.smallclaims.service.ClaimService;
@@ -51,6 +52,8 @@ public class ClaimController {
     @PostMapping
     public Claim add(@RequestBody Claim claim) {
         claim.setUser(getCurrentUser());
+        claim.setClaimStatus("NEW");
+        claim.setStaffNotes("");
         return claimService.save(claim);
     }
 
