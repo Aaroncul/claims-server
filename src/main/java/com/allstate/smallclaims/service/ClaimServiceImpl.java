@@ -5,13 +5,14 @@ import com.allstate.smallclaims.domain.User;
 import com.allstate.smallclaims.domain.data.ClaimRepository;
 import com.allstate.smallclaims.domain.data.UserRepository;
 import com.allstate.smallclaims.exceptions.ClaimNotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -22,7 +23,7 @@ public class ClaimServiceImpl implements ClaimService {
     private ClaimRepository claimRepository;
     @Autowired
     private UserRepository userRepository;
-
+    Logger logger = LoggerFactory.getLogger(ClaimService.class);
     @Override
     public List<Claim> findClaimsByUser(User user) {
         return claimRepository.findAllByUser(user);
@@ -73,6 +74,7 @@ public class ClaimServiceImpl implements ClaimService {
             return optionalClaim.get();
         }
 
+        logger.info("No claim found with id "+id);
         throw new ClaimNotFoundException("There is no claim with an ID of " + id);
     }
 
