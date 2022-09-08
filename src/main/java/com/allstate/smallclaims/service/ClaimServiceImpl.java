@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -47,10 +48,14 @@ public class ClaimServiceImpl implements ClaimService {
         if (data.containsKey("petAnimal")) claim.setPetAnimal(data.get("petAnimal"));
         if (data.containsKey("petBreed")) claim.setPetBreed(data.get("petBreed"));
         if (data.containsKey("propertyAddress")) claim.setPropertyAddress(data.get("propertyAddress"));
-        if (data.containsKey("staffNotes")) claim.setStaffNotes(data.get("staffNotes"));
         if (data.containsKey("vehicleMake")) claim.setVehicleMake(data.get("vehicleMake"));
         if (data.containsKey("vehicleModel")) claim.setVehicleModel(data.get("vehicleModel"));
         if (data.containsKey("vehicleYear")) claim.setVehicleYear(Integer.parseInt(data.get("vehicleYear")));
+
+        //Don't update staff notes if they've already been added
+        if(claim.getStaffNotes().equals("") && data.containsKey("staffNotes")) {
+            claim.setStaffNotes(data.get("staffNotes"));
+        }
 
         return claimRepository.save(claim);
     }

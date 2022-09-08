@@ -1,35 +1,18 @@
 package com.allstate.smallclaims.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Claim {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
-
     @ManyToOne
     User user;
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public String getPetBreed() {
-        return petBreed;
-    }
-
-    public void setPetBreed(String petBreed) {
-        this.petBreed = petBreed;
-    }
-
+    @OneToMany
+    List<TaskTodo> tasks;
     String firstName;
     String middleName;
     String lastName;
@@ -46,6 +29,22 @@ public class Claim {
     Integer vehicleYear;
     String claimStatus;
     String staffNotes;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getPetBreed() {
+        return petBreed;
+    }
+
+    public void setPetBreed(String petBreed) {
+        this.petBreed = petBreed;
+    }
 
     public String getStaffNotes() {
         return staffNotes;
@@ -66,7 +65,12 @@ public class Claim {
     public Claim() {
     }
 
-    public Claim(User user, String firstName, String middleName, String lastName, String policyNumber, LocalDate claimDate, Double claimAmount, String claimReason, String incidentDescription, String petAnimal, String petBreed, String propertyAddress, String vehicleMake, String vehicleModel, Integer vehicleYear, String claimStatus, String staffNotes) {
+    public Claim(User user, String firstName, String middleName, String lastName,
+                 String policyNumber, LocalDate claimDate, Double claimAmount,
+                 String claimReason, String incidentDescription, String petAnimal,
+                 String petBreed, String propertyAddress, String vehicleMake,
+                 String vehicleModel, Integer vehicleYear, String claimStatus,
+                 String staffNotes, List<TaskTodo> tasks) {
         this.user = user;
         this.firstName = firstName;
         this.middleName = middleName;
@@ -84,10 +88,19 @@ public class Claim {
         this.vehicleYear = vehicleYear;
         this.claimStatus = claimStatus;
         this.staffNotes = staffNotes;
+        this.tasks = tasks;
     }
 
     public Integer getId() {
         return id;
+    }
+
+    public List<TaskTodo> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<TaskTodo> tasks) {
+        this.tasks = tasks;
     }
 
     public String getFirstName() {
