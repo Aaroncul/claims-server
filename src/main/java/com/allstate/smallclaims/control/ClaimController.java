@@ -1,7 +1,6 @@
 package com.allstate.smallclaims.control;
 
 import com.allstate.smallclaims.domain.Claim;
-import com.allstate.smallclaims.domain.ClaimStatus;
 import com.allstate.smallclaims.domain.User;
 import com.allstate.smallclaims.domain.data.UserRepository;
 import com.allstate.smallclaims.service.ClaimService;
@@ -10,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -61,5 +61,13 @@ public class ClaimController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         auth.getPrincipal();
         return userRepository.findByUsername(auth.getName());
+    }
+
+    @GetMapping("/volume")
+    public Map<String, String> getNumberOfClaims() {
+        Integer volume = claimService.countClaims();
+        Map<String, String> results = new HashMap<>();
+        results.put("volume", volume.toString());
+        return results;
     }
 }

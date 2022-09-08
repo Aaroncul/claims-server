@@ -12,4 +12,6 @@ public interface ClaimService {
     List<Claim> findClaimsByUser(User user);
     List<Claim> findAll();
     Claim updateClaim(Integer id, Map<String, String> data);
+
+    Integer countClaims();
 }

@@ -61,6 +61,11 @@ public class ClaimServiceImpl implements ClaimService {
     }
 
     @Override
+    public Integer countClaims() {
+        return claimRepository.findAll().size();
+    }
+
+    @Override
     public Claim findById(Integer id) {
         Optional<Claim> optionalClaim = claimRepository.findById(id);
 

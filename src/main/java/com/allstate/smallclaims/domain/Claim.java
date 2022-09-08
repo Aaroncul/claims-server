@@ -11,8 +11,6 @@ public class Claim {
     Integer id;
     @ManyToOne
     User user;
-    @OneToMany
-    List<TaskTodo> tasks;
     String firstName;
     String middleName;
     String lastName;
@@ -70,7 +68,7 @@ public class Claim {
                  String claimReason, String incidentDescription, String petAnimal,
                  String petBreed, String propertyAddress, String vehicleMake,
                  String vehicleModel, Integer vehicleYear, String claimStatus,
-                 String staffNotes, List<TaskTodo> tasks) {
+                 String staffNotes) {
         this.user = user;
         this.firstName = firstName;
         this.middleName = middleName;
@@ -88,19 +86,10 @@ public class Claim {
         this.vehicleYear = vehicleYear;
         this.claimStatus = claimStatus;
         this.staffNotes = staffNotes;
-        this.tasks = tasks;
     }
 
     public Integer getId() {
         return id;
-    }
-
-    public List<TaskTodo> getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(List<TaskTodo> tasks) {
-        this.tasks = tasks;
     }
 
     public String getFirstName() {
