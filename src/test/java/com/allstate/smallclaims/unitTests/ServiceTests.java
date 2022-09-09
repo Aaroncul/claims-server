@@ -46,17 +46,17 @@ public class ServiceTests {
         claims.add(
         new Claim(user,"Tester","Tester","Tester",
                 "10050",LocalDate.now(),100.00,
-                "Reason","Desc","Cat",
+                "Reason",LocalDate.now(),"Desc", "Cat",
                 "Big cat",null,null,
                 null,null,"NEW",""));
         claims.add(new Claim(user,"Tester","Tester","Tester",
             "10050",LocalDate.now(),100.00,
-            "Reason","Desc","Cat",
+            "Reason",LocalDate.now(),"Desc","Cat",
             "Big cat",null,null,
             null,null,"NEW",""));
         claims.add(new Claim(user,"Tester","Tester","Tester",
             "10050",LocalDate.now(),100.00,
-            "Reason","Desc","Cat",
+            "Reason",LocalDate.now(),"Desc","Cat",
             "Big cat",null,null,
             null,null,"NEW",""));
 

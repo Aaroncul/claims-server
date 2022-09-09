@@ -20,6 +20,7 @@ public class ClaimDto {
     LocalDate claimDate;
     Double claimAmount;
     String claimReason;
+    LocalDate incidentDate;
     String incidentDescription;
     String petAnimal;
     String petBreed;
@@ -67,7 +68,7 @@ public class ClaimDto {
 
     public ClaimDto(User user, String firstName, String middleName, String lastName,
                  String policyNumber, LocalDate claimDate, Double claimAmount,
-                 String claimReason, String incidentDescription, String petAnimal,
+                 String claimReason, LocalDate incidentDate, String incidentDescription, String petAnimal,
                  String petBreed, String propertyAddress, String vehicleMake,
                  String vehicleModel, Integer vehicleYear, String claimStatus,
                  String staffNotes) {
@@ -79,6 +80,7 @@ public class ClaimDto {
         this.claimDate = claimDate;
         this.claimAmount = claimAmount;
         this.claimReason = claimReason;
+        this.incidentDate = incidentDate;
         this.incidentDescription = incidentDescription;
         this.petAnimal = petAnimal;
         this.petBreed = petBreed;
@@ -88,6 +90,14 @@ public class ClaimDto {
         this.vehicleYear = vehicleYear;
         this.claimStatus = claimStatus;
         this.staffNotes = staffNotes;
+    }
+
+    public LocalDate getIncidentDate() {
+        return incidentDate;
+    }
+
+    public void setIncidentDate(LocalDate incidentDate) {
+        this.incidentDate = incidentDate;
     }
 
     public void setId(Integer id) {
@@ -213,7 +223,7 @@ public class ClaimDto {
     public Claim toClaim() {
 
         Claim claim = new Claim(user, firstName,middleName,lastName,policyNumber,
-                claimDate,claimAmount,claimReason,incidentDescription,petAnimal,
+                claimDate,claimAmount,claimReason,incidentDate,incidentDescription,petAnimal,
                 petBreed,propertyAddress,vehicleMake,vehicleModel, vehicleYear,
                 claimStatus,staffNotes);
 

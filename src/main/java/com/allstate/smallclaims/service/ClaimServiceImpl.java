@@ -45,6 +45,7 @@ public class ClaimServiceImpl implements ClaimService {
         if (data.containsKey("claimAmount")) claim.setClaimAmount(Double.parseDouble(data.get("claimAmount")));
         if (data.containsKey("claimReason")) claim.setClaimReason(data.get("claimReason"));
         if (data.containsKey("claimStatus")) claim.setClaimStatus(data.get("claimStatus"));
+        if (data.containsKey("incidentDate")) claim.setClaimDate(LocalDate.parse(data.get("incidentDate")));
         if (data.containsKey("incidentDescription")) claim.setIncidentDescription(data.get("incidentDescription"));
         if (data.containsKey("petAnimal")) claim.setPetAnimal(data.get("petAnimal"));
         if (data.containsKey("petBreed")) claim.setPetBreed(data.get("petBreed"));

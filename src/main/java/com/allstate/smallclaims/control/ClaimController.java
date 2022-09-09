@@ -4,8 +4,6 @@ import com.allstate.smallclaims.domain.Claim;
 import com.allstate.smallclaims.domain.User;
 import com.allstate.smallclaims.domain.data.UserRepository;
 import com.allstate.smallclaims.service.ClaimService;
-import com.sun.org.slf4j.internal.LoggerFactory;
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
